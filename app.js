@@ -167,11 +167,11 @@ let score = 0;
 
 // question1.start();
 question1.showQuestion();
-question1.selectAnswer("b");
+question1.selectAnswer();
 question1.next();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("c");
-question1.next();
-question1.selectAnswer("c");
-question1.next();
+question1.selectAnswer();
+// question1.next();
+// question1.selectAnswer("c");
+// question1.next();
+// question1.selectAnswer("c");
+// question1.next();
