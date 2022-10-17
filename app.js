@@ -32,36 +32,42 @@ class Quiz {
   }
 
   showQuestion() {
-    if (i < questionArray.length) {
-      console.log(
-        `Frage : ${i + 1}   ${questionArray[i].question}
+    setTimeout(() => {
+      if (i < questionArray.length) {
+        console.log(
+          `Frage : ${i + 1}   ${questionArray[i].question}
         a: ${questionArray[i].answers["a"]} b : ${
-          questionArray[i].answers["b"]
-        } c : ${questionArray[i].answers["c"]} d : ${
-          questionArray[i].answers["d"]
-        }`
-      );
+            questionArray[i].answers["b"]
+          } c : ${questionArray[i].answers["c"]} d : ${
+            questionArray[i].answers["d"]
+          }`
+        );
 
-      // console.log(
-      //   "Frage : " + (i + 1),
-      //   questionArray[i].question,
-      //   questionArray[i].answers
-      // );
-      i++;
-    } else {
-      console.log("Quiz Over!");
-      this.totalScore();
-      this.showEnd();
-    }
+        // console.log(
+        //   "Frage : " + (i + 1),
+        //   questionArray[i].question,
+        //   questionArray[i].answers
+        // );
+        i++;
+      } else {
+        console.log("Quiz Over!");
+        this.totalScore();
+        this.showEnd();
+      }
+    }, 1000);
   }
 
   selectAnswer(userAntwort) {
-    if (userAntwort == questionArray[i - 1].right) {
-      score++;
-      console.log(`Wonderful! Your are right! Your score : ${score}`);
-    } else {
-      console.log(`You are wrong! Your score : ${score}`);
-    }
+    setTimeout(() => {
+      if (userAntwort == questionArray[i - 1].right) {
+        score++;
+        console.log(`Wonderful! Your are right! Your score : ${score}
+      ************************************************`);
+      } else {
+        console.log(`You are wrong! Your score : ${score}
+      ************************************************`);
+      }
+    }, 1000);
   }
 
   next() {
@@ -187,13 +193,13 @@ const questionArray = [
 let i = 0;
 let score = 0;
 
-question1.start();
+//question1.start();
 question1.showQuestion();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("a");
+question1.selectAnswer("a");
+question1.next();
+question1.selectAnswer("a");
+question1.next();
+question1.selectAnswer("a");
 // question1.next();
 // question1.selectAnswer("c");
 // question1.next();
