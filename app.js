@@ -41,12 +41,6 @@ class Quiz {
           questionArray[i].answers["d"]
         }`
       );
-
-      // console.log(
-      //   "Frage : " + (i + 1),
-      //   questionArray[i].question,
-      //   questionArray[i].answers
-      // );
       i++;
     } else {
       console.log("Quiz Over!");
@@ -55,7 +49,7 @@ class Quiz {
     }
   }
 
-  selectAnswer(userAntwort) {
+  selectAnswer() {
     rl.question("Which answer is correct", function (answer) {
       // console.log(`Oh, so your name is ${answer}`);
       // console.log("Closing the interface");
@@ -91,7 +85,6 @@ class Quiz {
   // Am Ende wird QuizTime angezeigt
 
   showEnd() {
-    // result -> You scored ... totalScore , Congratulations! Button Try agaein
     if (i === questionArray.length) {
       console.log(`Do you want to play again or quit?   Y / n`);
     }
@@ -199,21 +192,15 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// rl.question("Which answer is correct ? ", function (answer) {
-//   // console.log(`Oh, so your name is ${answer}`);
-//   // console.log("Closing the interface");
-//   rl.close();
-// });
-
 // question1.start();
 question1.showQuestion();
-//question1.selectAnswer();
+question1.selectAnswer();
 question1.next();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("c");
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("c");
 // question1.next();
 // question1.selectAnswer("c");
 // question1.next();
