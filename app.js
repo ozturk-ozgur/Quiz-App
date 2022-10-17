@@ -56,12 +56,17 @@ class Quiz {
   }
 
   selectAnswer(userAntwort) {
-    if (userAntwort == questionArray[i - 1].right) {
-      score++;
-      console.log(`Wonderful! Your are right! Your score : ${score}`);
-    } else {
-      console.log(`You are wrong! Your score : ${score}`);
-    }
+    rl.question("Which answer is correct", function (answer) {
+      // console.log(`Oh, so your name is ${answer}`);
+      // console.log("Closing the interface");
+      if (answer == questionArray[i - 1].right) {
+        score++;
+        console.log(`Wonderful! Your are right! Your score : ${score}`);
+      } else {
+        console.log(`You are wrong! Your score : ${score}`);
+      }
+      rl.close();
+    });
   }
 
   next() {
@@ -187,15 +192,28 @@ const questionArray = [
 let i = 0;
 let score = 0;
 
-question1.start();
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+// rl.question("Which answer is correct ? ", function (answer) {
+//   // console.log(`Oh, so your name is ${answer}`);
+//   // console.log("Closing the interface");
+//   rl.close();
+// });
+
+// question1.start();
 question1.showQuestion();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
+//question1.selectAnswer();
+question1.next();
+question1.selectAnswer("a");
+question1.next();
+question1.selectAnswer("a");
+question1.next();
+question1.selectAnswer("c");
 // question1.next();
 // question1.selectAnswer("c");
 // question1.next();
