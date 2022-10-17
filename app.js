@@ -33,22 +33,34 @@ class Quiz {
 
   showQuestion() {
     if (i < questionArray.length) {
-      console.log(questionArray[i].question, questionArray[i].answers);
+      console.log(
+        `Frage : ${i + 1}   ${questionArray[i].question}
+        a: ${questionArray[i].answers["a"]} b : ${
+          questionArray[i].answers["b"]
+        } c : ${questionArray[i].answers["c"]} d : ${
+          questionArray[i].answers["d"]
+        }`
+      );
+
+      // console.log(
+      //   "Frage : " + (i + 1),
+      //   questionArray[i].question,
+      //   questionArray[i].answers
+      // );
       i++;
     } else {
       console.log("Quiz Over!");
       this.totalScore();
       this.showEnd();
-      this.timer();
     }
   }
 
   selectAnswer(userAntwort) {
     if (userAntwort == questionArray[i - 1].right) {
       score++;
-      console.log(`Wonderful! Your are right! Total score : ${score}`);
+      console.log(`Wonderful! Your are right! Your score : ${score}`);
     } else {
-      console.log(`You are wrong! Total score : ${score}`);
+      console.log(`You are wrong! Your score : ${score}`);
     }
   }
 
@@ -72,12 +84,11 @@ class Quiz {
   }
 
   // Am Ende wird QuizTime angezeigt
-  timer() {}
 
   showEnd() {
     // result -> You scored ... totalScore , Congratulations! Button Try agaein
     if (i === questionArray.length) {
-      console.log(`Do you want to play again or quit?`);
+      console.log(`Do you want to play again or quit?   Y / n`);
     }
   }
 }
@@ -161,15 +172,39 @@ const question8 = new Quiz(questions[7]);
 const question9 = new Quiz(questions[8]);
 const question10 = new Quiz(questions[9]);
 
-const questionArray = [question1, question2, question3, question4];
+const questionArray = [
+  question1,
+  question2,
+  question3,
+  question4,
+  question5,
+  question6,
+  question7,
+  question8,
+  question9,
+  question10,
+];
 let i = 0;
 let score = 0;
 
-// question1.start();
+question1.start();
 question1.showQuestion();
-question1.selectAnswer();
-question1.next();
-question1.selectAnswer();
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("c");
+// question1.next();
+// question1.selectAnswer("c");
+// question1.next();
+// question1.selectAnswer("c");
+// question1.selectAnswer("a");
+// question1.next();
+// question1.selectAnswer("c");
+// question1.next();
+// question1.selectAnswer("c");
 // question1.next();
 // question1.selectAnswer("c");
 // question1.next();
