@@ -29,10 +29,9 @@ class Quiz {
   }
 
   restart() {
-   
     i = 0;
     score = 0;
-    this.start()
+    this.start();
   }
 
   showQuestion() {
@@ -51,7 +50,7 @@ class Quiz {
       i++;
 
       this.selectAnswer();
-    }else {
+    } else {
       console.log("Quiz Over!");
       // this.showEnd();
     }
@@ -71,22 +70,25 @@ class Quiz {
       console.log(`You are wrong! Your score : ${score}`);
     }
 
+    setTimeout( ()=> {
+      if (i === questionArray.length) {
+            reset();
+          } else {
+            this.next();
+          }
+    },1000)
 
-    if (( i === questionArray.length)) {
-      reset();
-    } else {
-      this.next()
-    }
 
+    
 
     function reset() {
       const giveAnswer = promptSync(
         "Play again? yes (play again) / no (finished)"
       );
       answer = giveAnswer;
-  
+
       if (answer.toLowerCase() === "yes") {
-        question1.restart()
+        question1.restart();
       } else if (answer.toLowerCase() === "no") {
         console.log("See you next time!");
       }
@@ -163,7 +165,7 @@ const questions = [
   },
   {
     id: 7,
-    question: "Wann wurde die erste Ausgabe der Vogue veröffentlicht",
+    question: "Wann wurde die erste Ausgabe der Vogue veröffentlicht?",
     answers: { a: 1892, b: 1960, c: 1976, d: 2000 },
     right: "a",
   },
@@ -182,7 +184,7 @@ const questions = [
   {
     id: 10,
     question: "Welcher ist der längste Fluss der Welt?",
-    answers: { a: "Nil", b: "	Amazonas", c: "Jangtsekiang", d: "Mississippi" },
+    answers: { a: "Nil", b: "Amazonas", c: "Jangtsekiang", d: "Mississippi" },
     right: "a",
   },
 ];
@@ -214,4 +216,3 @@ let i = 0;
 let score = 0;
 
 question1.start();
-
