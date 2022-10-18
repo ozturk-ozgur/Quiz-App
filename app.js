@@ -1,3 +1,5 @@
+import prompt from "prompt-sync";
+
 class Quiz {
   constructor({ id, question, answers, right }) {
     this.id = id;
@@ -9,7 +11,7 @@ class Quiz {
   // callback 3..2..1.. start
   start() {
     setTimeout(function () {
-      console.log("Quiz is starting");
+      console.log("Quiz is starting...");
       setTimeout(function () {
         console.log(3);
         setTimeout(function () {
@@ -18,6 +20,7 @@ class Quiz {
             console.log(1);
             setTimeout(function () {
               console.log("Start!");
+              question1.showQuestion();
             }, 1000);
           }, 1000);
         }, 1000);
@@ -28,75 +31,94 @@ class Quiz {
   restart() {
     i = 0;
     score = 0;
-    this.showQuestion();
+    this.start();
   }
 
   showQuestion() {
-    setTimeout(() => {
-      if (i < questionArray.length) {
-        console.log(
-          `Frage : ${i + 1}   ${questionArray[i].question}
-        a: ${questionArray[i].answers["a"]} b : ${
-            questionArray[i].answers["b"]
-          } c : ${questionArray[i].answers["c"]} d : ${
-            questionArray[i].answers["d"]
-          }`
-        );
+    if (i < questionArray.length) {
+      console.log(
+        ` ********************************************
 
-        // console.log(
-        //   "Frage : " + (i + 1),
-        //   questionArray[i].question,
-        //   questionArray[i].answers
-        // );
-        i++;
-      } else {
-        console.log("Quiz Over!");
-        this.totalScore();
-        this.showEnd();
-      }
-    }, 1000);
+        Frage : ${i + 1}   ${questionArray[i].question} 
+
+        a: ${questionArray[i].answers["a"]} b : ${
+          questionArray[i].answers["b"]
+        } c : ${questionArray[i].answers["c"]} d : ${
+          questionArray[i].answers["d"]
+        }`
+      );
+      i++;
+
+      this.selectAnswer();
+    } else {
+      console.log("Quiz Over!");
+      // this.showEnd();
+    }
   }
 
-  selectAnswer(userAntwort) {
-    setTimeout(() => {
-      if (userAntwort == questionArray[i - 1].right) {
-        score++;
-        console.log(`Wonderful! Your are right! Your score : ${score}
-      ************************************************`);
-      } else {
-        console.log(`You are wrong! Your score : ${score}
-      ************************************************`);
+  selectAnswer() {
+    const promptSync = prompt();
+    const giveANumber = promptSync("Which one is right?");
+
+    const num = giveANumber;
+    let answer;
+
+    if (num == questionArray[i - 1].right) {
+      score++;
+      console.log(`Wonderful! Your are right! Your score : ${score}`);
+    } else {
+      console.log(`You are wrong! Your score : ${score}`);
+    }
+
+    setTimeout( ()=> {
+      if (i === questionArray.length) {
+            reset();
+          } else {
+            this.next();
+          }
+    },1000)
+
+
+    
+
+    function reset() {
+      const giveAnswer = promptSync(
+        "Play again? yes (play again) / no (finished)"
+      );
+      answer = giveAnswer;
+
+      if (answer.toLowerCase() === "yes") {
+        question1.restart();
+      } else if (answer.toLowerCase() === "no") {
+        console.log("See you next time!");
       }
-    }, 1000);
+    }
   }
 
   next() {
     this.showQuestion();
   }
 
-  prev() {
-    if (i > 1) {
-      console.log(questionArray[i - 2].question);
-      i--;
-    } else if (i === 0) {
-      console.log(questionArray[i - 1].question);
-    } else {
-      console.log("You cannot go back to the previous question.");
-    }
-  }
+  // prev() {
+  //   if (i > 1) {
+  //     console.log(questionArray[i - 2].question);
+  //     i--;
+  //   } else if (i === 0) {
+  //     console.log(questionArray[i - 1].question);
+  //   } else {
+  //     console.log("You cannot go back to the previous question.");
+  //   }
+  // }
 
-  totalScore() {
-    console.log(`Total score : ${score}`);
-  }
+  // totalScore() {
+  //   console.log(`Total score : ${score}`);
+  // }
 
-  // Am Ende wird QuizTime angezeigt
-
-  showEnd() {
-    // result -> You scored ... totalScore , Congratulations! Button Try agaein
-    if (i === questionArray.length) {
-      console.log(`Do you want to play again or quit?   Y / n`);
-    }
-  }
+  // showEnd() {
+  //   if (i === questionArray.length) {
+  //     console.log(`Do you want to play again or quit?   Y / n`);
+  //   }
+  // }
 }
 
 const questions = [
@@ -143,7 +165,7 @@ const questions = [
   },
   {
     id: 7,
-    question: "Wann wurde die erste Ausgabe der Vogue veröffentlicht",
+    question: "Wann wurde die erste Ausgabe der Vogue veröffentlicht?",
     answers: { a: 1892, b: 1960, c: 1976, d: 2000 },
     right: "a",
   },
@@ -162,7 +184,7 @@ const questions = [
   {
     id: 10,
     question: "Welcher ist der längste Fluss der Welt?",
-    answers: { a: "Nil", b: "	Amazonas", c: "Jangtsekiang", d: "Mississippi" },
+    answers: { a: "Nil", b: "Amazonas", c: "Jangtsekiang", d: "Mississippi" },
     right: "a",
   },
 ];
@@ -193,6 +215,7 @@ const questionArray = [
 let i = 0;
 let score = 0;
 
+<<<<<<< HEAD
 //question1.start();
 question1.showQuestion();
 question1.selectAnswer("a");
@@ -216,3 +239,6 @@ question1.selectAnswer("a");
 // question1.next();
 // question1.selectAnswer("c");
 // question1.next();
+=======
+question1.start();
+>>>>>>> selectAnswer
