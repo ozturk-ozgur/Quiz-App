@@ -1,3 +1,5 @@
+import prompt from "prompt-sync";
+
 class Quiz {
   constructor({ id, question, answers, right }) {
     this.id = id;
@@ -9,7 +11,7 @@ class Quiz {
   // callback 3..2..1.. start
   start() {
     setTimeout(function () {
-      console.log("Quiz is starting");
+      console.log("Quiz is starting...");
       setTimeout(function () {
         console.log(3);
         setTimeout(function () {
@@ -18,6 +20,7 @@ class Quiz {
             console.log(1);
             setTimeout(function () {
               console.log("Start!");
+              question1.showQuestion();
             }, 1000);
           }, 1000);
         }, 1000);
@@ -26,15 +29,19 @@ class Quiz {
   }
 
   restart() {
+   
     i = 0;
     score = 0;
-    this.showQuestion();
+    this.start()
   }
 
   showQuestion() {
     if (i < questionArray.length) {
       console.log(
-        `Frage : ${i + 1}   ${questionArray[i].question}
+        ` ********************************************
+
+        Frage : ${i + 1}   ${questionArray[i].question} 
+
         a: ${questionArray[i].answers["a"]} b : ${
           questionArray[i].answers["b"]
         } c : ${questionArray[i].answers["c"]} d : ${
@@ -42,53 +49,74 @@ class Quiz {
         }`
       );
       i++;
-    } else {
+
+      this.selectAnswer();
+    }else {
       console.log("Quiz Over!");
-      this.totalScore();
-      this.showEnd();
+      // this.showEnd();
     }
   }
 
   selectAnswer() {
-    rl.question("Which answer is correct", function (answer) {
-      // console.log(`Oh, so your name is ${answer}`);
-      // console.log("Closing the interface");
-      if (answer == questionArray[i - 1].right) {
-        score++;
-        console.log(`Wonderful! Your are right! Your score : ${score}`);
-      } else {
-        console.log(`You are wrong! Your score : ${score}`);
+    const promptSync = prompt();
+    const giveANumber = promptSync("Which one is right?");
+
+    const num = giveANumber;
+    let answer;
+
+    if (num == questionArray[i - 1].right) {
+      score++;
+      console.log(`Wonderful! Your are right! Your score : ${score}`);
+    } else {
+      console.log(`You are wrong! Your score : ${score}`);
+    }
+
+
+    if (( i === questionArray.length)) {
+      reset();
+    } else {
+      this.next()
+    }
+
+
+    function reset() {
+      const giveAnswer = promptSync(
+        "Play again? yes (play again) / no (finished)"
+      );
+      answer = giveAnswer;
+  
+      if (answer.toLowerCase() === "yes") {
+        question1.restart()
+      } else if (answer.toLowerCase() === "no") {
+        console.log("See you next time!");
       }
-      rl.close();
-    });
+    }
   }
 
   next() {
     this.showQuestion();
   }
 
-  prev() {
-    if (i > 1) {
-      console.log(questionArray[i - 2].question);
-      i--;
-    } else if (i === 0) {
-      console.log(questionArray[i - 1].question);
-    } else {
-      console.log("You cannot go back to the previous question.");
-    }
-  }
+  // prev() {
+  //   if (i > 1) {
+  //     console.log(questionArray[i - 2].question);
+  //     i--;
+  //   } else if (i === 0) {
+  //     console.log(questionArray[i - 1].question);
+  //   } else {
+  //     console.log("You cannot go back to the previous question.");
+  //   }
+  // }
 
-  totalScore() {
-    console.log(`Total score : ${score}`);
-  }
+  // totalScore() {
+  //   console.log(`Total score : ${score}`);
+  // }
 
-  // Am Ende wird QuizTime angezeigt
-
-  showEnd() {
-    if (i === questionArray.length) {
-      console.log(`Do you want to play again or quit?   Y / n`);
-    }
-  }
+  // showEnd() {
+  //   if (i === questionArray.length) {
+  //     console.log(`Do you want to play again or quit?   Y / n`);
+  //   }
+  // }
 }
 
 const questions = [
@@ -185,33 +213,5 @@ const questionArray = [
 let i = 0;
 let score = 0;
 
-const readline = require("readline");
+question1.start();
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-// question1.start();
-question1.showQuestion();
-question1.selectAnswer();
-question1.next();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
