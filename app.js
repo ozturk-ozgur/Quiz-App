@@ -1,4 +1,6 @@
 import prompt from "prompt-sync";
+let i = 0;
+let score = 0;
 
 class Quiz {
   constructor({ id, question, answers, right }) {
@@ -8,7 +10,6 @@ class Quiz {
     this.right = right;
   }
 
-  // callback 3..2..1.. start
   start() {
     setTimeout(function () {
       console.log("Quiz is starting...");
@@ -27,13 +28,7 @@ class Quiz {
       }, 1000);
     }, 500);
   }
-
-  restart() {
-    i = 0;
-    score = 0;
-    this.start();
-  }
-
+  
   showQuestion() {
     if (i < questionArray.length) {
       console.log(
@@ -52,13 +47,13 @@ class Quiz {
       this.selectAnswer();
     } else {
       console.log("Quiz Over!");
-      // this.showEnd();
     }
   }
 
   selectAnswer() {
     const promptSync = prompt();
-    const giveANumber = promptSync("Which one is right?");
+    const giveANumber = promptSync(`
+    Which one is right?   `);
 
     const num = giveANumber;
     let answer;
@@ -78,12 +73,9 @@ class Quiz {
           }
     },1000)
 
-
-    
-
     function reset() {
       const giveAnswer = promptSync(
-        "Play again? yes (play again) / no (finished)"
+        "Quiz Over! Play again? yes (play again) / no (finished)"
       );
       answer = giveAnswer;
 
@@ -99,26 +91,12 @@ class Quiz {
     this.showQuestion();
   }
 
-  // prev() {
-  //   if (i > 1) {
-  //     console.log(questionArray[i - 2].question);
-  //     i--;
-  //   } else if (i === 0) {
-  //     console.log(questionArray[i - 1].question);
-  //   } else {
-  //     console.log("You cannot go back to the previous question.");
-  //   }
-  // }
+  restart() {
+    i = 0;
+    score = 0;
+    this.start();
+  }
 
-  // totalScore() {
-  //   console.log(`Total score : ${score}`);
-  // }
-
-  // showEnd() {
-  //   if (i === questionArray.length) {
-  //     console.log(`Do you want to play again or quit?   Y / n`);
-  //   }
-  // }
 }
 
 const questions = [
@@ -212,33 +190,6 @@ const questionArray = [
   question9,
   question10,
 ];
-let i = 0;
-let score = 0;
 
-<<<<<<< HEAD
-//question1.start();
-question1.showQuestion();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-=======
+
 question1.start();
->>>>>>> selectAnswer
