@@ -28,7 +28,6 @@ class Quiz {
       }, 1000);
     }, 500);
   }
-
   
   showQuestion() {
     if (i < questionArray.length) {
@@ -54,7 +53,7 @@ class Quiz {
   selectAnswer() {
     const promptSync = prompt();
     const giveANumber = promptSync(`
-    Which one is right?`);
+    Which one is right?   `);
 
     const num = giveANumber;
     let answer;
