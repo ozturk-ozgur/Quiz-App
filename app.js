@@ -1,4 +1,6 @@
 import prompt from "prompt-sync";
+let i = 0;
+let score = 0;
 
 class Quiz {
   constructor({ id, question, answers, right }) {
@@ -27,12 +29,7 @@ class Quiz {
     }, 500);
   }
 
-  restart() {
-    i = 0;
-    score = 0;
-    this.start();
-  }
-
+  
   showQuestion() {
     if (i < questionArray.length) {
       console.log(
@@ -94,6 +91,13 @@ class Quiz {
   next() {
     this.showQuestion();
   }
+
+  restart() {
+    i = 0;
+    score = 0;
+    this.start();
+  }
+
 }
 
 const questions = [
@@ -187,7 +191,6 @@ const questionArray = [
   question9,
   question10,
 ];
-let i = 0;
-let score = 0;
+
 
 question1.start();
