@@ -58,7 +58,8 @@ class Quiz {
 
   selectAnswer() {
     const promptSync = prompt();
-    const giveANumber = promptSync("Which one is right?");
+    const giveANumber = promptSync(`
+    Which one is right?`);
 
     const num = giveANumber;
     let answer;
@@ -83,7 +84,7 @@ class Quiz {
 
     function reset() {
       const giveAnswer = promptSync(
-        "Play again? yes (play again) / no (finished)"
+        "Quiz Over! Play again? yes (play again) / no (finished)"
       );
       answer = giveAnswer;
 
@@ -215,30 +216,4 @@ const questionArray = [
 let i = 0;
 let score = 0;
 
-<<<<<<< HEAD
-//question1.start();
-question1.showQuestion();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("a");
-question1.next();
-question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.selectAnswer("a");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-// question1.selectAnswer("c");
-// question1.next();
-=======
 question1.start();
->>>>>>> selectAnswer
