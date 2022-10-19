@@ -8,7 +8,6 @@ class Quiz {
     this.right = right;
   }
 
-  // callback 3..2..1.. start
   start() {
     setTimeout(function () {
       console.log("Quiz is starting...");
@@ -52,7 +51,6 @@ class Quiz {
       this.selectAnswer();
     } else {
       console.log("Quiz Over!");
-      // this.showEnd();
     }
   }
 
@@ -79,9 +77,6 @@ class Quiz {
           }
     },1000)
 
-
-    
-
     function reset() {
       const giveAnswer = promptSync(
         "Quiz Over! Play again? yes (play again) / no (finished)"
@@ -99,27 +94,6 @@ class Quiz {
   next() {
     this.showQuestion();
   }
-
-  // prev() {
-  //   if (i > 1) {
-  //     console.log(questionArray[i - 2].question);
-  //     i--;
-  //   } else if (i === 0) {
-  //     console.log(questionArray[i - 1].question);
-  //   } else {
-  //     console.log("You cannot go back to the previous question.");
-  //   }
-  // }
-
-  // totalScore() {
-  //   console.log(`Total score : ${score}`);
-  // }
-
-  // showEnd() {
-  //   if (i === questionArray.length) {
-  //     console.log(`Do you want to play again or quit?   Y / n`);
-  //   }
-  // }
 }
 
 const questions = [
